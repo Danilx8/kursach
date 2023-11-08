@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>{{ depot.name }}</h1>
+<p>{{ count }}/{{ depot.capacity }} мест занято</p>
+{% if cars or bikes %}
+    {% if cars %}
+    <h2>Машины</h2>
+        <ul>
+          {% for car in cars %}
+          <li>
+              <h3>{{ car.name }}</h3>
+              <h4>{{ car.brand }}</h4>
+              <p>Цвет - {{ car.color }}</p>
+              <p>Почасовая оплата - {{ car.costPerHour }}</p>
+              <p>Оплата за сутки - {{ car.costDaily }}</p>
+          </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if bikes%}
+    <h2>Велосипеды</h2>
+        <ul>
+          {% for bike in bikes %}
+          <li>
+              <h2>{{ bike.name }}</h2>
+              <h4>{{ bike.brand }}</h4>
+              <p>Цвет - {{ bike.color }}</p>
+              <p>Почасовая оплата - {{ bike.costPerHour }}</p>
+              <p>Оплата за сутки - {{ bike.costDaily }}</p>
+          </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% else %}
+    <p>Транспортных средств не обнаружено</p>
+{% endif %}
+{% endblock %}

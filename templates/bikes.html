@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% for bike in bikes %}
+    <h2>{{ bike.name }}</h2>
+    <h4>{{ bike.brand.name }}</h4>
+    <p>Цвет - {{ bike.color }}</p>
+    <p>Местоположение - <a href="/depot/{{ bike.depot.id }}">{{ bike.depot.name }}</a></p>
+    <p>Почасовая оплата - {{ bike.costPerHour }}</p>
+    <p>Оплата за сутки - {{ bike.costDaily }}</p>
+{% endfor %}
+{% endblock %}

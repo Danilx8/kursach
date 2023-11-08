@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% for brand in brands %}
+    <h2>{{ brand.name }}</h2>
+    <p>Арендуемый продукт - {{ brand.type }}</p>
+{% endfor %}
+{% endblock %}

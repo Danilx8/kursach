@@ -1,16 +1,33 @@
+from django.contrib import admin
 from django.urls import path
 
-from app.views import PostListApiView, OfficeListApiView
+from . import views
 
 
 urlpatterns = [
     path(
-        'posts/',  # урл для posts
-        PostListApiView.as_view()  # вызываем класс представления как вью
+        'home/',
+        views.home,
+        name='home'
     ),
-
     path(
-        'office/',  # урл для office
-        OfficeListApiView.as_view()  # вызываем класс представления как вью
+        'bikes/',  # урл для posts
+        views.bikes,   # вызываем класс представления как вью
+        name='bikes'
+    ),
+    path(
+        'cars/',  # урл для posts
+        views.cars,   # вызываем класс представления как вью
+        name='cars'
+    ),
+    path(
+        'depots/',
+        views.depots,
+        name='depots'
+    ),
+    path(
+        'depot/<int:id>',  # урл для posts
+        views.vehicles_by_depot, # вызываем класс представления как вью
+        name='vehicles in depot'
     ),
 ]

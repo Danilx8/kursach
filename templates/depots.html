@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% for depot in depots %}
+    <a href="/depot/{{depot.id}}">
+        <h2>{{ depot.name }}</h2>
+    </a>
+    <h4>{{ depot.address }}</h4>
+    <p>Вмещает - {{ depot.capacity }}</p>
+{% endfor %}
+{% endblock %}

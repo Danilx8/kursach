@@ -1,29 +1,51 @@
-from rest_framework import generics  # Готовые представления для наследования
-from rest_framework.permissions import AllowAny  # Импорт прав доступа к представлению
-
-from .models import Office, Post
-from .serializers import OfficeSerializer, PostSerializer
+from django.shortcuts import render
+from .models import *
 
 
-class OfficeListApiView(generics.ListAPIView):
-	"""
-	Класс представления для просмотра данных Offcie
-	ListAPIView - предоставляет логику для просмотра записей
-	есть множество других, их можно найти провалившись в модуль generics (нажать cntrl + лкм)
-	:param queryset, serializer_class, permission_classes
-	"""
+def home(request):
+    brands = Brand.objects.all().order_by("name")
 
-	queryset = Office.objects.all()  # Данные с которыми хотим производить манипуляции
-	serializer_class = OfficeSerializer  # Класс сериализации для валидации и сериализации данных
-	permission_classes = [AllowAny, ]  # Права доступа к представлению. AllowAny - доступ открыт для всех
+    return render(request, 'home.html', {
+        "title": "Домашняя страница",
+        "brands": brands,
+    })
 
 
-class PostListApiView(generics.ListAPIView):
-	"""
-	Класс представления для просмотра данных Post
-	:param queryset, serializer_class, permission_classes
-	"""
+def bikes(request):
+    bikes = Bike.objects.all()
+    return render(request, 'bikes.html', {
+        "title": "Аренда велосипеда",
+        "bikes": bikes,
+    })
 
-	queryset = Post.objects.all()  # Данные с которыми хотим производить манипуляции
-	serializer_class = PostSerializer  # Класс сериализации для валидации и сериализации данных
-	permission_classes = [AllowAny, ]  # Права доступа к представлению
+
+def cars(request):
+    cars = Car.objects.all()
+
+    return render(request, 'cars.html', {
+        "title": "Аренда автомобиля",
+        "cars": cars
+    })
+
+
+def depots(request):
+    depots = Depot.objects.all()
+
+    return render(request, 'depots.html', {
+        "title": "Все депо",
+        "depots": depots
+    })
+
+
+def vehicles_by_depot(request, id):
+    depot = Depot.objects.get(id=id)
+    cars = Car.objects.filter(depot=depot)
+    bikes = Bike.objects.filter(depot=depot)
+
+    return render(request, 'current_depot.html', {
+        "title": "Наполнение депо",
+        "cars": cars,
+        "bikes": bikes,
+        "depot": depot,
+        "count": cars.count() + bikes.count()
+    })
