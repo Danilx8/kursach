@@ -6,6 +6,11 @@ from . import views
 
 urlpatterns = [
     path(
+        '',
+        views.home,
+        name='home'
+    ),
+    path(
         'home/',
         views.home,
         name='home'
@@ -26,8 +31,18 @@ urlpatterns = [
         name='depots'
     ),
     path(
-        'depot/<int:id>',  # урл для posts
+        'depots/<int:id>',  # урл для posts
         views.vehicles_by_depot, # вызываем класс представления как вью
         name='vehicles in depot'
     ),
+    path(
+        'depots/cars/<int:id>',
+        views.cars_experience,
+        name='cars experience'
+    ),
+    path(
+        'depots/bikes/<int:id>',
+        views.bikes_experience,
+        name='bikes experience'
+    )
 ]

@@ -65,10 +65,10 @@ class Depot(models.Model):
 class Rent(models.Model):
 	start = models.DateTimeField(default=timezone.now)
 	end = models.DateTimeField(null=True)
-	Car = models.ManyToManyField(
+	car = models.ManyToManyField(
 		to=Car
 	)
-	Bike = models.ManyToManyField(
+	bike = models.ManyToManyField(
 		to=Bike
 	)
 	client = models.ForeignKey(

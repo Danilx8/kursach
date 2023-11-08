@@ -8,8 +8,10 @@
         <ul>
           {% for car in cars %}
           <li>
-              <h3>{{ car.name }}</h3>
-              <h4>{{ car.brand }}</h4>
+              <a href="cars/{{ car.id }}">
+                  <h3>{{ car.name }}</h3>
+              </a>
+              <h4>{{ car.brand.name }}</h4>
               <p>Цвет - {{ car.color }}</p>
               <p>Почасовая оплата - {{ car.costPerHour }}</p>
               <p>Оплата за сутки - {{ car.costDaily }}</p>
@@ -22,8 +24,10 @@
         <ul>
           {% for bike in bikes %}
           <li>
-              <h2>{{ bike.name }}</h2>
-              <h4>{{ bike.brand }}</h4>
+              <a href="bikes/{{ bike.id }}">
+                <h2>{{ bike.name }}</h2>
+              </a>
+              <h4>{{ bike.brand.name }}</h4>
               <p>Цвет - {{ bike.color }}</p>
               <p>Почасовая оплата - {{ bike.costPerHour }}</p>
               <p>Оплата за сутки - {{ bike.costDaily }}</p>

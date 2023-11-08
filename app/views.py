@@ -49,3 +49,25 @@ def vehicles_by_depot(request, id):
         "depot": depot,
         "count": cars.count() + bikes.count()
     })
+
+
+def cars_experience(request, id):
+    car = Car.objects.get(id=id)
+    drives = Rent.objects.filter(car=car).count()
+
+    return render(request, 'experience.html', {
+        "title": "Количество поездок",
+        "car": car,
+        "count": drives
+    })
+
+
+def bikes_experience(request, id):
+    bike = Bike.objects.get(id=id)
+    drives = Rent.objects.filter(bike=bike).count()
+
+    return render(request, 'experience.html', {
+        "title": "Количество поездок",
+        "bike": bike,
+        "count": drives
+    })
